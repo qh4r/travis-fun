@@ -1,0 +1,15 @@
+FROM node:alpine
+
+WORKDIR /app
+
+COPY package.json .
+
+RUN npm i
+
+CMD ["npm", "start"]
+
+
+#docker run -it -v /app/node_modules -v $(pwd):/app -p 3000:3000 87b8f553e0b85cd2eb9f5c6bcdd2a33b76136859c4d47c0b63d01f2c80210f73
+# -v bez mapowania -v /app/node_modules sprawia, że ten folder nie zostanie nadpisany niczym zewnętrznym
+# - "ten folder ma byc zostawiony w spokoju"
+# oprocz tego standardowo [ZEWNATRZ]:[WEWNATRZ] jak z portami

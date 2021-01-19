@@ -1,0 +1,25 @@
+version: '3'
+
+x-config: &shared
+  build:
+    context: .
+    dockerfile: Dockerfile.dev
+  volumes:
+    - /app/node_modules
+    - .:/app
+
+services:
+
+  web:
+    <<: *shared
+    ports:
+    - 3000:3000
+
+  tests:
+    <<: *shared
+    command: ["npm", "run", "test"]
+
+  prod:
+    build: .
+    ports:
+      - 3000:80
